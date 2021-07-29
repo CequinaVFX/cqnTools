@@ -20,7 +20,7 @@ import os
 
 def AutoProjectSettings():
 
-	print
+	print ('')
 	print ('.............................')
 	print ('... Starting Auto Project ...')
 	print ('.............................')
@@ -105,7 +105,7 @@ def AutoProjectSettings():
 
 			if (saveFolder == '') or (saveFolder == 'Master Folder'):
 				createFolder = False
-				print
+				print ('')
 				print ('No folder structure created ')
 
 			else:
@@ -118,23 +118,23 @@ def AutoProjectSettings():
 
 				shotFolder = (os.path.join(saveFolder, scriptName))
 				
-				print
+				print ('')
 				print ('Create folder structure at')
 				print (saveFolder)
 
 				try:
 					os.mkdir(shotFolder)
-					print
+					print ('')
 					print ('-> Shot folder created: ' + shotFolder)
 					task.setMessage( 'Creating: %s' % (shotFolder))
 
 				except:
-					print
+					print ('')
 					print ('-> Main folder already exist!\n%s' %(shotFolder))
 
 				if (addFolder == ''):
 					#createFolder = False
-					print
+					print ('')
 					print ("--> Don't create any sub-folders")
 					pass
 
@@ -154,11 +154,11 @@ def AutoProjectSettings():
 
 						try:
 							os.mkdir(folderName)
-							print
+							print ('')
 							print ('--> Created sub-directory: ' + folderName)
 							
 						except:
-							print
+							print ('')
 							print ('--> Folder already exist!\n%s' %(folderName))
 							versionUp = True
 
@@ -170,7 +170,7 @@ def AutoProjectSettings():
 							exportFolder = folderName # Get the second folder name to set the Write node
 							createExportFolder = True
 
-				print
+				print ('')
 				print ('++++++++++++++++++++++++++++++++++')
 
 
@@ -198,7 +198,7 @@ def AutoProjectSettings():
 			inPoint = int(inPoint)
 			outPoint = int(outPoint)
 			
-			print
+			print ('')
 			print ('Read Node created: ' + newRead.name())
 			print ('--> ' + f)
 
@@ -250,7 +250,7 @@ def AutoProjectSettings():
 
 			tclip['frame_mode'].setValue('start at')
 
-			print
+			print ('')
 			print ('Timeclip Node created: ' + tclip.name())
 
 			task.setMessage ( 'Creating: %s' % (tclip.name()))
@@ -352,9 +352,9 @@ def AutoProjectSettings():
 			bk['xpos'].setValue( Xw - 225 )
 			bk['ypos'].setValue( Yw - 200 )
 
-			print
+			print ('')
 			print ('Backdrop created: ' + bk.name())
-			print
+			print ('')
 			print ('++++++++++++++++++++++++++++++++++')
 
 			task.setMessage ( 'Creating: %s' % (bk.name()))
@@ -368,7 +368,7 @@ def AutoProjectSettings():
 			# Setup Project Settings #
 
 
-			print
+			print ('')
 			print ('Project Settings')
 
 			task.setMessage ( 'Project Settings...' )
@@ -392,7 +392,7 @@ def AutoProjectSettings():
 			nkRoot['last_frame'].setValue(outPoint)
 			nkRoot['lock_range'].setValue(True)
 
-			print
+			print ('')
 			print ('Set Frame Range to %s:%s' % (str(inPoint), str(outPoint)))
 
 
@@ -401,7 +401,7 @@ def AutoProjectSettings():
 				nuke.addFormat('%d %d %d %s' %(width, height, aspectRatio, newFormatName))
 				nkRoot['format'].setValue(newFormatName)
 				newRead['format'].setValue(newFormatName)
-				print
+				print ('')
 				print ('Set Format to %s %sx%s, and aspect ratio to %s' % (newFormatName, str(width), str(height), str(aspectRatio)))
 				
 
@@ -409,12 +409,12 @@ def AutoProjectSettings():
 				for each in (nuke.formats()):
 					if (each.name()) == readFormat:
 						nkRoot['format'].setValue(each.name())
-						print
+						print ('')
 						print ('Set Format to %s %sx%s, and aspect ratio to %s' % (str(each.name()), str(width), str(height), str(aspectRatio)))
 						pass
 
 
-			print
+			print ('')
 			print ('++++++++++++++++++++++++++++++++++')
 
 
@@ -450,7 +450,7 @@ def AutoProjectSettings():
 
 				task.setMessage ( 'Creating: %s' % (exclip.name()))
 				
-				print
+				print ('')
 				print ('Timeclip Node created: ' + exclip.name())
 
 
@@ -491,7 +491,7 @@ def AutoProjectSettings():
 			nWrite['xpos'].setValue(xPos)
 			nWrite['ypos'].setValue(yPos + 1000)
 
-			print
+			print ('')
 			print ('Write Node created: ' + nWrite.name())
 
 			if exportAt == True:
@@ -533,9 +533,9 @@ def AutoProjectSettings():
 
 			task.setMessage ( 'Creating: %s' % (bk.name()))
 
-			print
+			print ('')
 			print ('Backdrop created: ' + bk.name())
-			print
+			print ('')
 			print ('++++++++++++++++++++++++++++++++++')
 
 
@@ -559,7 +559,7 @@ def AutoProjectSettings():
 					message = True
 
 			except:
-				print
+				print ('')
 				print ('No script Folder')
 				pass
 
@@ -592,11 +592,11 @@ def AutoProjectSettings():
 
 				nuke.scriptSaveAs(nukeFile)
 
-				print
+				print ('')
 				print ('Script saved at: ' + nukeFile)
-				print
+				print ('')
 				print ('++++++++++++++++++++++++++++++++++')
-				print
+				print ('')
 
 
 			elif (createFolder == True):
@@ -615,25 +615,25 @@ def AutoProjectSettings():
 
 				nuke.scriptSaveAs(nukeFile)
 
-				print
+				print ('')
 				print ('Script saved at: ' + nukeFile)
-				print
+				print ('')
 				print ('++++++++++++++++++++++++++++++++++')
-				print
+				print ('')
 
 			else:
 				nuke.message('<font size = "4" color = "red"><center><b>ATENTION!</b></font>\nScript unsaved! Please, do it!')
 
-				print
+				print ('')
 				print ('######### ATENTION! ##########')
 				print ('Script unsaved! Please, do it!')
-				print
+				print ('')
 				print ('++++++++++++++++++++++++++++++++++')
-				print
+				print ('')
 
 			print ('++++++++++++++++++++++++++++++++++')
 			print ('..................................')
-			print
+			print ('')
 
 
 			# End Save file #

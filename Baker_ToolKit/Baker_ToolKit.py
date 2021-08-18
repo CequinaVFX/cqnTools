@@ -273,20 +273,20 @@ def Tk2Roto_Baked():
 	tab = nuke.Tab_Knob('Reference Frame')
 	newRoto.addKnob(tab)
 
-	tk = nuke.Int_Knob('ref_frame',"Reference Frame")
+	tk = nuke.Int_Knob('reference_frame',"Reference Frame")
 	newRoto.addKnob(tk)
-	newRoto['ref_frame'].setValue(nuke.frame())
+	newRoto['reference_frame'].setValue(nuke.frame())
 
-	tk = nuke.PyScript_Knob('setFrame','Set to current frame', 'nuke.thisNode()["ref_frame"].setValue(nuke.frame())')
+	tk = nuke.PyScript_Knob('setFrame','Set to current frame', 'nuke.thisNode()["reference_frame"].setValue(nuke.frame())')
 	newRoto.addKnob(tk)
 
-	newRoto['label'].setValue('Reference Frame: [value ref_frame]')
+	newRoto['label'].setValue('Reference Frame: [value reference_frame]')
 
 
 	# Set the expressions to take control from reference frame
-	newRoto['translate'].setExpression('curve - curve(ref_frame)')
-	newRoto['rotate'].setExpression('curve - curve(ref_frame)')
-	newRoto['scale'].setExpression('curve - curve(ref_frame) + 1')
+	newRoto['translate'].setExpression('curve - curve(reference_frame)')
+	newRoto['rotate'].setExpression('curve - curve(reference_frame)')
+	newRoto['scale'].setExpression('curve - curve(reference_frame) + 1')
 
 	newRoto.showControlPanel()
 
@@ -407,18 +407,18 @@ def Tk2Transform_Baked():
 		task.setProgress( int( float(n / 2 ) / frame_range.last() * 100 ) )
 
 		#Get Translate
-		newTransform.knob( 'translate').setValueAt( node.knob( 'translate' ).getValueAt(n)[0] , n, 0)
-		newTransform.knob( 'translate').setValueAt( node.knob( 'translate' ).getValueAt(n)[1] , n, 1)
+		newTransform.knob( 'translate' ).setValueAt( node.knob( 'translate' ).getValueAt(n)[0] , n, 0)
+		newTransform.knob( 'translate' ).setValueAt( node.knob( 'translate' ).getValueAt(n)[1] , n, 1)
 
 		#Get Rotate
-		newTransform.knob( 'rotate').setValueAt( node.knob( 'rotate' ).getValueAt(n) , n)
+		newTransform.knob( 'rotate' ).setValueAt( node.knob( 'rotate' ).getValueAt(n) , n)
 
 		#Get Scale
-		newTransform.knob( 'scale').setValueAt( node.knob( 'scale' ).getValueAt(n) , n)
+		newTransform.knob( 'scale' ).setValueAt( node.knob( 'scale' ).getValueAt(n) , n)
 
 		#Get Center
-		newTransform.knob( 'center').setValueAt( node.knob( 'center' ).getValueAt(n)[0] , n, 0)
-		newTransform.knob( 'center').setValueAt( node.knob( 'center' ).getValueAt(n)[1] , n, 1)
+		newTransform.knob( 'center' ).setValueAt( node.knob( 'center' ).getValueAt(n)[0] , n, 0)
+		newTransform.knob( 'center' ).setValueAt( node.knob( 'center' ).getValueAt(n)[1] , n, 1)
 
 
 	# Make this node different 
@@ -431,20 +431,20 @@ def Tk2Transform_Baked():
 	tab = nuke.Tab_Knob('Reference Frame')
 	newTransform.addKnob(tab)
 
-	tk = nuke.Int_Knob('ref_frame',"Reference Frame")
+	tk = nuke.Int_Knob('reference_frame',"Reference Frame")
 	newTransform.addKnob(tk)
-	newTransform['ref_frame'].setValue(nuke.frame())
+	newTransform['reference_frame'].setValue(nuke.frame())
 
-	tk = nuke.PyScript_Knob('setFrame',"Set to current frame", 'nuke.thisNode()["ref_frame"].setValue(nuke.frame())')
+	tk = nuke.PyScript_Knob('setFrame',"Set to current frame", 'nuke.thisNode()["reference_frame"].setValue(nuke.frame())')
 	newTransform.addKnob(tk)
 
 	# Set the expressions to take control from reference frame
-	newTransform['translate'].setExpression('curve - curve(ref_frame)')
-	newTransform['rotate'].setExpression('curve - curve(ref_frame)')
-	newTransform['scale'].setExpression('curve - curve(ref_frame) + 1')
+	newTransform['translate'].setExpression('curve - curve(reference_frame)')
+	newTransform['rotate'].setExpression('curve - curve(reference_frame)')
+	newTransform['scale'].setExpression('curve - curve(reference_frame) + 1')
 
 	ref = node['reference_frame'].getValue()
-	newTransform['label'].setValue('Reference Frame: [value ref_frame]')
+	newTransform['label'].setValue('Reference Frame: [value reference_frame]')
 
 	#Change back to Original Transform
 	node['transform'].setValue(orgTransform)
@@ -590,17 +590,17 @@ def StabFromMocha():
 	tab = nuke.Tab_Knob('Reference Frame')
 	newStab.addKnob(tab)
 
-	fh = nuke.Int_Knob('hold',"Hold at")
+	fh = nuke.Int_Knob('reference_frame',"Hold at")
 	newStab.addKnob(fh)
-	newStab['hold'].setValue(curFrame)
+	newStab['reference_frame'].setValue(curFrame)
 
-	fh = nuke.PyScript_Knob('setFrame', 'Set to current frame', 'nuke.thisNode()["hold"].setValue(nuke.frame())')
+	fh = nuke.PyScript_Knob('setFrame', 'Set to current frame', 'nuke.thisNode()["reference_frame"].setValue(nuke.frame())')
 	newStab.addKnob(fh)
 
 
 	newStab['tile_color'].setValue( 542721024 )
 	newStab['gl_color'].setValue( 542721024 )
-	newStab['label'].setValue('Stabilize\nRef Frame: [value knob.hold]')
+	newStab['label'].setValue('Stabilize\nRef Frame: [value knob.reference_frame]')
 	newStab["xpos"].setValue(node["xpos"].getValue()+150)
 	newStab["ypos"].setValue(node["ypos"].getValue()+150)
 	newStab.hideControlPanel()
@@ -615,10 +615,10 @@ def StabFromMocha():
 	newStab['from3'].setAnimated()
 	newStab['from4'].setAnimated()
 
-	newStab['to1'].setExpression('curve(knob.hold)')
-	newStab['to2'].setExpression('curve(knob.hold)')
-	newStab['to3'].setExpression('curve(knob.hold)')
-	newStab['to4'].setExpression('curve(knob.hold)')
+	newStab['to1'].setExpression('curve(knob.reference_frame)')
+	newStab['to2'].setExpression('curve(knob.reference_frame)')
+	newStab['to3'].setExpression('curve(knob.reference_frame)')
+	newStab['to4'].setExpression('curve(knob.reference_frame)')
 
 	#Match Move Node
 	newMMove = nuke.createNode('CornerPin2D')

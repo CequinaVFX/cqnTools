@@ -28,14 +28,7 @@ def changeFrame():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+#Add a menu and assign a shortcut
+toolbar = nuke.menu('Nodes')
+cqnTools = toolbar.addMenu('CQNTools', 'Modify.png')
+cqnTools.addCommand('Change reference frame', 'setRefFrame.changeFrame()', 'crtl + shift + alt + f', icon='TimeOffset.png')
